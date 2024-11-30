@@ -11,5 +11,8 @@ export class AppController {
   }
 
   @Post('zip-stream')
-  async zipAndStream() {}
+  async zipAndStream() {
+    // we're going to zip the README.md and the package.json files
+    const filePaths = ['../README.md', '../package.json'];
+  }
 }
