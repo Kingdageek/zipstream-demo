@@ -1,5 +1,5 @@
 {
-  "name": "zipstream",
+  "name": "zipstream-demo",
   "version": "0.0.1",
   "description": "Demo of zip streaming files in NestJs",
   "author": "Nonso Mgbechi <mgbechinonso@gmail.com> (https://kingdageek.github.io)",
