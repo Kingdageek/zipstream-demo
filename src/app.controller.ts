@@ -14,6 +14,17 @@ export class AppController {
 
   @Post('zip-stream')
   async zipAndStream() {
+    const zipDataArr = this.prepZipData();
+    return FileStreamHelper.streamZip(zipDataArr);
+  }
+
+  @Post('zip-stream-with-length')
+  async zipAndStreamWithLength() {
+    const zipDataArr = this.prepZipData();
+    return FileStreamHelper.streamZipWithContentLength(zipDataArr);
+  }
+
+  private prepZipData() {
     // we're going to zip the README.md and the package.json files
     const currDir = __dirname;
     const filePaths = [`${currDir}/../README.md`, `${currDir}/../package.json`];
@@ -21,7 +32,6 @@ export class AppController {
       fileStream: createReadStream(path),
       fileName: path.split('/').pop(),
     }));
-
-    return FileStreamHelper.streamZip(zipDataArr);
+    return zipDataArr;
   }
 }

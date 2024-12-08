@@ -67,4 +67,18 @@ export class FileStreamHelper {
       archive.finalize();
     });
   }
+
+  static async streamZipWithContentLength(
+    zipDataArr: ZipData[],
+    zipFileName = 'bundled',
+  ) {
+    const { location, size } = await this.streamZipToTemp(zipDataArr);
+    const locationReadStream = createReadStream(location);
+    const streamableFile = new StreamableFile(locationReadStream, {
+      type: 'application/zip',
+      disposition: `attachment; filename="${zipFileName}.zip"`,
+      length: size,
+    });
+    return streamableFile;
+  }
 }
